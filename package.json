@@ -11,18 +11,18 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^6.1.6",
+    "@mui/icons-material": "^5.15.15",
     "@mui/lab": "^6.0.0-beta.14",
-    "@mui/material": "^6.1.6",
+    "@mui/material": "^5.15.15",
     "axios": "^1.7.7",
     "next": "15.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
     "postcss": "^8",
