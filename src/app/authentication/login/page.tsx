@@ -6,7 +6,7 @@ import PageContainer from "@/app/(DashboardLayout)/components/container/PageCont
 import Logo from "@/app/(DashboardLayout)/layout/shared/logo/Logo";
 import AuthLogin from "../auth/AuthLogin";
 
-const Login2 = () => {
+export default function Login2() {
   return (
     <PageContainer title="Login" description="this is Login page">
       <Box
@@ -93,4 +93,3 @@ const Login2 = () => {
     </PageContainer>
   );
 };
-export default Login2;
