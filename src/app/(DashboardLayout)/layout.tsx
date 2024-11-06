@@ -1,6 +1,11 @@
 "use client";
 import { styled, Container, Box } from "@mui/material";
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+// components
+import Loading from '@/app/loading'
 import Header from "@/app/(DashboardLayout)/layout/header/Header";
 import Sidebar from "@/app/(DashboardLayout)/layout/sidebar/Sidebar";
 
@@ -30,19 +35,36 @@ export default function RootLayout({
 }) {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-  return (
-    <MainWrapper className="mainwrapper">
-      <Sidebar
-        isSidebarOpen={isSidebarOpen}
-        isMobileSidebarOpen={isMobileSidebarOpen}
-        onSidebarClose={() => setMobileSidebarOpen(false)}
-      />
-      <PageWrapper className="page-wrapper">
-        <Header toggleMobileSidebar={() => setMobileSidebarOpen(true)} />
-        <Container sx={{ paddingTop: "20px", maxWidth: "1200px" }}>
-          <Box sx={{ minHeight: "calc(100vh - 170px)" }}>{children}</Box>
-        </Container>
-      </PageWrapper>
-    </MainWrapper>
-  );
+
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/authentication/login");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+  if (session) {
+    return (
+      <MainWrapper className="mainwrapper">
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          isMobileSidebarOpen={isMobileSidebarOpen}
+          onSidebarClose={() => setMobileSidebarOpen(false)}
+        />
+        <PageWrapper className="page-wrapper">
+          <Header toggleMobileSidebar={() => setMobileSidebarOpen(true)} />
+          <Container sx={{ paddingTop: "20px", maxWidth: "1200px" }}>
+            <Box sx={{ minHeight: "calc(100vh - 170px)" }}>{children}</Box>
+          </Container>
+        </PageWrapper>
+      </MainWrapper>
+    );
+  }
+
+  return null;
 }

@@ -8,8 +8,8 @@ import {
   Stack,
   Checkbox,
 } from "@mui/material";
+import axios from 'axios';
 import Link from "next/link";
-
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
 
 interface loginType {
@@ -19,6 +19,20 @@ interface loginType {
 }
 
 export default function AuthLogin({ title, subtitle, subtext }: loginType) {
+
+  // const getOrder = async () => {
+  //   try {
+  //     const response = await axios.post(Urlconnec + 'get/getorder');
+  //     if (response.status === 200) {
+  //       setRows(response.data.result);
+  //     } else {
+  //       console.log('Status:', response.status);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
+
   return (
     <>
       {title ? (
