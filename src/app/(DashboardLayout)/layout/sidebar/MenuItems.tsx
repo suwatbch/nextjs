@@ -28,6 +28,18 @@ const Menuitems = [
   },
   {
     id: uniqueId(),
+    title: "Login",
+    icon: IconLogin,
+    href: "/test",
+  },
+  {
+    id: uniqueId(),
+    title: "Button",
+    icon: IconUserPlus,
+    href: "/web/button",
+  },
+  {
+    id: uniqueId(),
     title: "Typography",
     icon: IconTypography,
     href: "/utilities/typography",
