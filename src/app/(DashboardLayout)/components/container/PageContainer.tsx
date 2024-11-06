@@ -1,4 +1,3 @@
-// import { Helmet } from 'react-helmet';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
@@ -8,16 +7,16 @@ type Props = {
   title?: string;
 };
 
-const PageContainer = ({ title, description, children }: Props) => (
-  <HelmetProvider>
-    <div>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
-      {children}
-    </div>
-  </HelmetProvider>
-);
-
-export default PageContainer;
+export default function PageContainer({ title, description, children }: Props) {
+  return (
+    <HelmetProvider>
+      <div>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Helmet>
+        {children}
+      </div>
+    </HelmetProvider>
+  )
+}

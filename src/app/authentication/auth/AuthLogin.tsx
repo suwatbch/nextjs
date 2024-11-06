@@ -79,7 +79,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
           </Typography>
         </Stack>
       </Stack>
-      <Box>
+      <Stack>
         <Button
           color="primary"
           variant="contained"
@@ -91,7 +91,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
         >
           Sign In
         </Button>
-      </Box>
+      </Stack>
       {subtitle}
     </>
   );

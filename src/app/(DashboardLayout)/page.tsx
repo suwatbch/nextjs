@@ -28,13 +28,13 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <Grid item xs={12} lg={4}>
-            {/* <RecentTransactions /> */}
+            <RecentTransactions />
           </Grid>
           <Grid item xs={12} lg={8}>
-            {/* <ProductPerformance /> */}
+            <ProductPerformance />
           </Grid>
           <Grid item xs={12}>
-            {/* <Blog /> */}
+            <Blog />
           </Grid>
         </Grid>
       </Box>

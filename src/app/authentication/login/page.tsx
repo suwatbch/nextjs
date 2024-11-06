@@ -55,7 +55,7 @@ export default function Login2() {
                     color="textSecondary"
                     mb={1}
                   >
-                    Your Social Campaigns
+                    Your Social Campaigns ++
                   </Typography>
                 }
                 subtitle={
