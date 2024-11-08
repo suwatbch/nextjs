@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import axios from 'axios';
 import Link from "next/link";
+import { urlConnectFrontend } from "@/app/(DashboardLayout)/config/config";
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
 
 interface loginType {
@@ -20,9 +21,10 @@ interface loginType {
 
 export default function AuthLogin({ title, subtitle, subtext }: loginType) {
 
-  // const getOrder = async () => {
+  // const authorization = async () => {
   //   try {
-  //     const response = await axios.post(Urlconnec + 'get/getorder');
+  //     const response = await axios.post(urlConnectFrontend + 'api/auth');
+  //     console.log(response);
   //     if (response.status === 200) {
   //       setRows(response.data.result);
   //     } else {
@@ -101,6 +103,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
           fullWidth
           component={Link}
           href="/"
+          // onClick={authorization}
           type="submit"
         >
           Sign In

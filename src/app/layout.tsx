@@ -2,7 +2,7 @@
 import { baselightTheme } from "@/utils/theme/DefaultColors";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { CustomProviders } from './provider';
+import { AuthProviders } from './provider';
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <CustomProviders>
+    <AuthProviders>
       <html lang="en">
         <body>
           <ThemeProvider theme={baselightTheme}>
@@ -19,6 +19,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </CustomProviders>
+    </AuthProviders>
   );
 }
