@@ -11,21 +11,15 @@ const handler = NextAuth({
       },
       authorize: async (credentials) => {
         try {
-          const res = await fetch("https://melivecode.com/api/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
-          });
-
-          const response = await res.json();
-
-          if (res.ok && response.status === "ok") {
-            return response.user;
+          console.log(credentials?.username);
+          console.log(credentials?.password);
+          if (credentials?.username === "max" && credentials?.password === "123") {
+            const user = { id: 1, name: credentials?.username };
+            return user;
           }
         } catch (error) {
           console.error("Error during authentication:", error);
         }
-        
         return null;
       },
     }),

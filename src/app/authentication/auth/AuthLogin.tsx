@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect} from 'react';
 import {
   Box,
   Typography,
@@ -8,10 +9,11 @@ import {
   Stack,
   Checkbox,
 } from "@mui/material";
-import axios from 'axios';
 import Link from "next/link";
 import { urlConnectFrontend } from "@/app/(DashboardLayout)/config/config";
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface loginType {
   title?: string;
@@ -21,19 +23,42 @@ interface loginType {
 
 export default function AuthLogin({ title, subtitle, subtext }: loginType) {
 
-  // const authorization = async () => {
-  //   try {
-  //     const response = await axios.post(urlConnectFrontend + 'api/auth');
-  //     console.log(response);
-  //     if (response.status === 200) {
-  //       setRows(response.data.result);
-  //     } else {
-  //       console.log('Status:', response.status);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  
+
+  const authorization = async () => {
+    try {
+      const res = await signIn("Credentials", {
+        username,
+        password,
+        redirect: false 
+      });
+
+      // if (!res) {
+      //   console.log("No response from signIn");
+      //   return;
+      // }
+      
+      // if (res.error) {
+      //   console.log("Invalid credentials");
+      //   return;
+      // }
+
+      // router.push("/");
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  };
+
+  const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <>
@@ -47,7 +72,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
 
       <Stack>
         <Box>
-          <Typography
+          <Typography 
             variant="subtitle1"
             fontWeight={600}
             component="label"
@@ -56,7 +81,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
           >
             Username
           </Typography>
-          <CustomTextField variant="outlined" fullWidth />
+          <CustomTextField variant="outlined" value={username} onChange={onChangeUsername} fullWidth />
         </Box>
         <Box mt="25px">
           <Typography
@@ -68,7 +93,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
           >
             Password
           </Typography>
-          <CustomTextField type="password" variant="outlined" fullWidth />
+          <CustomTextField type="password" variant="outlined" value={password} onChange={onChangePassword} fullWidth />
         </Box>
         <Stack
           justifyContent="space-between"
@@ -101,9 +126,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
           variant="contained"
           size="large"
           fullWidth
-          component={Link}
-          href="/"
-          // onClick={authorization}
+          onClick={authorization}
           type="submit"
         >
           Sign In
