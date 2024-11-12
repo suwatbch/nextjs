@@ -10,7 +10,6 @@ import {
   Checkbox,
 } from "@mui/material";
 import Link from "next/link";
-import { urlConnectFrontend } from "@/app/(DashboardLayout)/config/config";
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -30,21 +29,24 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
 
   const authorization = async () => {
     try {
-      const res = await signIn("Credentials", {
+      const res = await signIn("credentials", {
         username,
         password,
         redirect: false 
       });
 
-      // if (!res) {
-      //   console.log("No response from signIn");
-      //   return;
-      // }
+      if (!res) {
+        console.log("No response from signIn");
+        return;
+      }
       
-      // if (res.error) {
-      //   console.log("Invalid credentials");
-      //   return;
-      // }
+      if (res.error) {
+        console.log("Invalid credentials");
+        return;
+      }
+
+      console.log("Success")
+      console.log(res)
 
       // router.push("/");
     } catch (error) {
