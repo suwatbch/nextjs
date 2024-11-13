@@ -28,6 +28,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
   
 
   const authorization = async () => {
+
     try {
       const res = await signIn("credentials", {
         username,
@@ -44,10 +45,7 @@ export default function AuthLogin({ title, subtitle, subtext }: loginType) {
         console.log("Invalid credentials");
         return;
       }
-
-      console.log("Success")
       console.log(res)
-
       // router.push("/");
     } catch (error) {
       console.log("Error :", error);

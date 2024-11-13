@@ -1,23 +1,23 @@
 import NextAuth from "next-auth/next";
-import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials"
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "credentials",
+      name: 'Credentials',
       credentials: {
         username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         try {
-          console.log(credentials?.username);
-          console.log(credentials?.password);
-          const user = { id: "1", name: "name", email: "max@example.com" }
-          if (user) 
+          console.log(credentials?.username)
+          console.log(req)
+          const user = { id: "1", name: "max", email: "max@example.com" }
+          if (user)
             return user
           else
-            return null
+            return null;
 
         } catch (error) {
           console.error("Error during authentication:", error);
