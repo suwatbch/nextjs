@@ -1,11 +1,11 @@
 "use client";
 import { styled, Container, Box } from "@mui/material";
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// import { useSession } from "next-auth/react";
+// import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
 // components
-import Loading from "@/app/(DashboardLayout)/loading/loading";
+// import Loading from "@/app/(DashboardLayout)/loading/loading";
 import Header from "@/app/(DashboardLayout)/layout/header/Header";
 import Sidebar from "@/app/(DashboardLayout)/layout/sidebar/Sidebar";
 
@@ -36,19 +36,19 @@ export default function RootLayout({
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  // const { data: session, status } = useSession();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/authentication/login");
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/authentication/login");
+  //   }
+  // }, [status, router]);
 
-  if (status === "loading") {
-    return <Loading />;
-  }
-  if (session) {
+  // if (status === "loading") {
+  //   return <Loading />;
+  // }
+  // if (session) {
     return (
       <MainWrapper className="mainwrapper">
         <Sidebar
@@ -64,7 +64,7 @@ export default function RootLayout({
         </PageWrapper>
       </MainWrapper>
     );
-  }
+  // }
 
-  return null;
+  // return null;
 }
